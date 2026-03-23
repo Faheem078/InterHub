@@ -1,0 +1,37 @@
+/**
+ * InternHub Component Styles
+ */
+
+.sidebar {
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+
+.sidebar::-webkit-scrollbar { 
+    width: 6px; 
+}
+
+.sidebar::-webkit-scrollbar-thumb { 
+    background: rgba(255,255,255,0.2); 
+    border-radius: 10px; 
+}
+
+/* Ensure data-component placeholders don't collapse before loading */
+[data-component] {
+    display: block;
+    min-height: 1px;
+}
+
+/* Active link highlighting */
+.nav-item.active, .nav-links a.active {
+    background: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border-radius: 8px;
+}
+
+.sidebar-nav a.active {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}

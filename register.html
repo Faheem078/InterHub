@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Started – InternHub</title>
+<link rel="stylesheet" href="css/components.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:#DC2626;--red-dark:#991B1B;--red-light:#FEE2E2;
+    --blue:#1D4ED8;--blue-dark:#1E3A8A;--blue-light:#DBEAFE;
+    --white:#fff;--dark:#0F172A;--gray:#64748B;--border:#E2E8F0;--off-white:#F8FAFC;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',sans-serif;min-height:100vh;background:var(--off-white);display:flex;align-items:center;justify-content:center;padding:24px}
+  h1,h2,h3{font-family:'Syne',sans-serif}
+  .register-wrap{display:grid;grid-template-columns:1fr 1.2fr;max-width:940px;width:100%;background:white;border-radius:24px;overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,0.1);border:2px solid var(--border)}
+  .reg-left{background:linear-gradient(160deg,var(--dark),var(--blue-dark));padding:48px 36px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .reg-left::after{content:'';position:absolute;bottom:-80px;right:-80px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,0.25),transparent 70%)}
+  .panel-logo{display:flex;align-items:center;gap:10px;text-decoration:none;position:relative;z-index:1}
+  .logo-icon{width:36px;height:36px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:white;font-size:17px}
+  .logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:white}
+  .logo-text span{color:#FCA5A5}
+  .reg-left-content{position:relative;z-index:1}
+  .reg-left-content h2{font-size:32px;font-weight:800;color:white;line-height:1.2;margin-bottom:14px}
+  .reg-left-content h2 em{color:#FCA5A5;font-style:normal}
+  .reg-left-content p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.7}
+  .perks{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+  .perk{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.06);border-radius:12px;border:1px solid rgba(255,255,255,.08)}
+  .perk-icon{font-size:18px}
+  .perk-text{font-size:13px;color:rgba(255,255,255,.75);font-weight:500}
+  .reg-left-bottom{position:relative;z-index:1;font-size:12px;color:rgba(255,255,255,.3);padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
+  .reg-right{padding:48px 40px;overflow-y:auto}
+  .reg-right h1{font-size:28px;font-weight:800;color:var(--dark);margin-bottom:6px}
+  .reg-right>p{font-size:14px;color:var(--gray);margin-bottom:32px}
+  .reg-right>p a{color:var(--blue);text-decoration:none;font-weight:600}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .form-group{margin-bottom:18px}
+  .form-label{display:block;font-size:12px;font-weight:700;color:var(--dark);margin-bottom:7px;letter-spacing:.3px;text-transform:uppercase}
+  .form-input{width:100%;padding:11px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--off-white);transition:all .2s;outline:none}
+  .form-input:focus{border-color:var(--blue);background:white;box-shadow:0 0 0 4px rgba(29,78,216,.07)}
+  .form-input::placeholder{color:#CBD5E1}
+  .role-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+  .role-option{display:none}
+  .role-label{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;border:2px solid var(--border);border-radius:12px;cursor:pointer;transition:all .2s;background:var(--off-white)}
+  .role-label:hover{border-color:var(--blue);background:white}
+  .role-option:checked+.role-label{border-color:var(--red);background:var(--red-light)}
+  .role-icon{font-size:24px}
+  .role-name{font-size:13px;font-weight:700;color:var(--dark);font-family:'Syne',sans-serif}
+  .role-desc{font-size:11px;color:var(--gray);text-align:center}
+  .password-strength{margin-top:8px;display:flex;gap:4px}
+  .strength-bar{flex:1;height:3px;border-radius:2px;background:var(--border);transition:background .3s}
+  .strength-bar.filled{background:var(--red)}
+  .strength-bar.ok{background:#F59E0B}
+  .strength-bar.good{background:#10B981}
+  .strength-text{font-size:11px;color:var(--gray);margin-top:4px}
+  .checkbox-group{display:flex;align-items:flex-start;gap:10px;margin-bottom:24px}
+  .checkbox-group input{width:16px;height:16px;accent-color:var(--red);margin-top:1px;cursor:pointer;flex-shrink:0}
+  .checkbox-group span{font-size:12px;color:var(--gray);line-height:1.5}
+  .checkbox-group a{color:var(--blue);text-decoration:none;font-weight:600}
+  .btn-submit{width:100%;padding:14px;background:var(--red);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:all .25s;box-shadow:0 6px 24px rgba(220,38,38,.3)}
+  .btn-submit:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 10px 32px rgba(220,38,38,.4)}
+  .btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+  .error-msg{display:none;padding:10px 14px;background:var(--red-light);border:1px solid #FCA5A5;border-radius:8px;color:var(--red-dark);font-size:12px;margin-bottom:14px;font-weight:500}
+  .success-msg{display:none;padding:10px 14px;background:#D1FAE5;border:1px solid #6EE7B7;border-radius:8px;color:#065F46;font-size:12px;margin-bottom:14px;font-weight:500}
+  @media(max-width:768px){.register-wrap{grid-template-columns:1fr}.reg-left{display:none}}
+</style>
+</head>
+<body>
+
+<div class="register-wrap">
+  <div class="reg-left">
+    <a href="index.html" class="panel-logo">
+      <div class="logo-icon">I</div>
+      <div class="logo-text">Intern<span>Hub</span></div>
+    </a>
+    <div class="reg-left-content">
+      <h2>Start your <em>internship journey</em> today 🚀</h2>
+      <p>Join thousands of interns and companies using InternHub to manage their programs.</p>
+      <div class="perks">
+        <div class="perk"><div class="perk-icon">🎯</div><div class="perk-text">Structured task tracking & management</div></div>
+        <div class="perk"><div class="perk-icon">💡</div><div class="perk-text">Instant feedback from your admin team</div></div>
+        <div class="perk"><div class="perk-icon">📜</div><div class="perk-text">Earn a verifiable completion certificate</div></div>
+        <div class="perk"><div class="perk-icon">🔒</div><div class="perk-text">Secure data with role-based access</div></div>
+      </div>
+    </div>
+    <div class="reg-left-bottom">🔒 Your data is encrypted and secure. We never share your information.</div>
+  </div>
+
+  <div class="reg-right">
+    <h1>Create Account</h1>
+    <p>Already have an account? <a href="login.html">Sign in here</a></p>
+
+    <div class="error-msg" id="errorMsg"></div>
+    <div class="success-msg" id="successMsg">🎉 Account created! Redirecting to your dashboard...</div>
+
+    <form id="regForm" onsubmit="handleRegister(event)">
+      <div style="margin-bottom:16px">
+        <div class="form-label">I am registering as</div>
+        <div class="role-selector">
+          <div>
+            <input type="radio" name="role" id="role-intern" value="intern" class="role-option" checked>
+            <label for="role-intern" class="role-label">
+              <div class="role-icon">🎓</div>
+              <div class="role-name">Intern</div>
+              <div class="role-desc">Submit tasks & track progress</div>
+            </label>
+          </div>
+          <div>
+            <input type="radio" name="role" id="role-admin" value="admin" class="role-option">
+            <label for="role-admin" class="role-label">
+              <div class="role-icon">⚙️</div>
+              <div class="role-name">Admin</div>
+              <div class="role-desc">Review & manage submissions</div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" placeholder="Ahmed" id="firstName" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" placeholder="Khan" id="lastName" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="you@example.com" id="email" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <input type="tel" class="form-input" placeholder="+92 300 1234567" id="phone">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" placeholder="Min. 8 characters" id="password" oninput="checkStrength(this.value)" required>
+        <div class="password-strength">
+          <div class="strength-bar" id="bar1"></div>
+          <div class="strength-bar" id="bar2"></div>
+          <div class="strength-bar" id="bar3"></div>
+          <div class="strength-bar" id="bar4"></div>
+        </div>
+        <div class="strength-text" id="strengthText">Enter a password</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirm Password</label>
+        <input type="password" class="form-input" placeholder="Repeat your password" id="confirmPass" required>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="terms" required>
+        <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I understand how InternHub handles my data.</span>
+      </div>
+      <button type="submit" class="btn-submit" id="submitBtn">Create My Account →</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function checkStrength(val) {
+    const bars = [document.getElementById('bar1'),document.getElementById('bar2'),document.getElementById('bar3'),document.getElementById('bar4')];
+    const text = document.getElementById('strengthText');
+    bars.forEach(b => { b.className = 'strength-bar'; });
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+    const labels = ['Too short','Weak','Fair','Good','Strong'];
+    const cls = ['','filled','ok','good','good'];
+    for (let i = 0; i < score; i++) bars[i].classList.add(cls[score] || 'good');
+    text.textContent = val.length === 0 ? 'Enter a password' : labels[score];
+    text.style.color = score <= 1 ? 'var(--red)' : score === 2 ? '#F59E0B' : '#10B981';
+  }
+  function handleRegister(e) {
+    e.preventDefault();
+    const err = document.getElementById('errorMsg');
+    const suc = document.getElementById('successMsg');
+    const btn = document.getElementById('submitBtn');
+    const p = document.getElementById('password').value;
+    const cp = document.getElementById('confirmPass').value;
+    err.style.display = 'none'; suc.style.display = 'none';
+    if (p.length < 8) { err.textContent = '⚠ Password must be at least 8 characters.'; err.style.display = 'block'; return; }
+    if (p !== cp) { err.textContent = '⚠ Passwords do not match.'; err.style.display = 'block'; return; }
+    btn.textContent = 'Creating account...'; btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Create My Account →'; btn.disabled = false;
+      suc.style.display = 'block';
+      const role = document.querySelector('input[name="role"]:checked').value;
+      setTimeout(() => { window.location.href = role === 'admin' ? 'admin-dashboard.html' : 'dashboard.html'; }, 1500);
+    }, 1200);
+  }
+</script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
